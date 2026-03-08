@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
 import AuthProvider from "./context/AuthContext";
+import "./styles.css";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import Article from "./routes/Article/Article";
