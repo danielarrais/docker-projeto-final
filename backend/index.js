@@ -35,7 +35,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/articles", articlesRoutes);
 app.use("/api/profiles", profilesRoutes);
 app.use("/api/tags", tagsRoutes);
-app.get("*", (req, res) =>
+app.get("/*any", (req, res) =>
   res.status(404).json({ errors: { body: ["Not found"] } }),
 );
 app.use(errorHandler);
