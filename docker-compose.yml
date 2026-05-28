@@ -1,0 +1,61 @@
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: realworld
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: realworld
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U realworld"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend_db_net
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      JWT_KEY: "supersecret_change_me_in_production"
+      PROD_DB_USERNAME: realworld
+      PROD_DB_PASSWORD: password
+      PROD_DB_NAME: realworld
+      PROD_DB_HOSTNAME: db
+      PROD_DB_DIALECT: postgres
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend_db_net
+      - application_net
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - application_net
+
+volumes:
+  postgres_data:
+
+networks:
+  backend_db_net:
+    driver: bridge
+  application_net:
+    driver: bridge
+
