@@ -3,13 +3,13 @@ services:
     image: postgres:15-alpine
     restart: always
     environment:
-      POSTGRES_USER: realworld
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: realworld
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U realworld"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -21,16 +21,16 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     ports:
-      - "3001:3001"
+      - "${PORT}:${PORT}"
     environment:
-      NODE_ENV: production
-      PORT: 3001
-      JWT_KEY: "supersecret_change_me_in_production"
-      PROD_DB_USERNAME: realworld
-      PROD_DB_PASSWORD: password
-      PROD_DB_NAME: realworld
-      PROD_DB_HOSTNAME: db
-      PROD_DB_DIALECT: postgres
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+      JWT_KEY: ${JWT_KEY}
+      PROD_DB_USERNAME: ${PROD_DB_USERNAME}
+      PROD_DB_PASSWORD: ${PROD_DB_PASSWORD}
+      PROD_DB_NAME: ${PROD_DB_NAME}
+      PROD_DB_HOSTNAME: ${PROD_DB_HOSTNAME}
+      PROD_DB_DIALECT: ${PROD_DB_DIALECT}
     depends_on:
       db:
         condition: service_healthy

@@ -51,9 +51,19 @@ O arquivo `docker-compose.yml` gerencia a stack completa com as seguintes defini
 ### Controle de Fluxo
 - **Dependências Inteligentes**: O uso de `depends_on` com `service_healthy` garante que a stack suba na ordem correta, evitando erros de "database not ready" ou "api unreachable".
 
+## Configuração
+
+A aplicação utiliza um arquivo `.env` na raiz do projeto para gerenciar variáveis de ambiente sensíveis e configurações de infraestrutura.
+
+1.  Crie um arquivo `.env` baseado no exemplo:
+    ```bash
+    cp .env.example .env
+    ```
+2.  (Opcional) Ajuste as variáveis conforme necessário (senhas, portas, chaves JWT).
+
 ## Como Rodar
 
-Para subir a aplicação completa, basta executar:
+Para subir a aplicação completa, certifique-se de ter o arquivo `.env` configurado e execute:
 
 ```bash
 docker-compose up --build
