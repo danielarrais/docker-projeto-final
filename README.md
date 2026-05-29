@@ -1,3 +1,11 @@
+# Integrantes Grupo 6
+Laís Uchôa
+Alan Garcia
+José Gomes
+Daniel Arrais
+Tiago Sobreira
+Túlio Coimbra
+
 # Conduit RealWorld Example App - Dockerized
 
 Este projeto é um fork do repositório original [TonyMckes/conduit-realworld-example-app](https://github.com/TonyMckes/conduit-realworld-example-app). Foram adicionados os arquivos de configuração do Docker (`Dockerfile` para backend e frontend) e o arquivo `docker-compose.yml` para facilitar a orquestração e o deploy da aplicação em containers.
