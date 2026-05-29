@@ -1,10 +1,10 @@
 # Integrantes Grupo 6
-Laís Uchôa
-Alan Garcia
-José Gomes
-Daniel Arrais
-Tiago Sobreira
-Túlio Coimbra
+1. Laís Uchôa
+2. Alan Garcia
+3. José Gomes
+4. Daniel Arrais
+5. Tiago Sobreira
+6. Túlio Coimbra
 
 # Conduit RealWorld Example App - Dockerized
 
